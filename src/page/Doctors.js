@@ -1,32 +1,32 @@
-import React from "react";
+import React , { useEffect } from "react";
 
 const Doctors = () => {
-  const doctors = [
-    {
-      img: "../assets/img/doctors/doctors-1.jpg",
-      name: "Atha Smith",
-      position: "Chief Medical Officer",
-      dec: "Duis sagittis rutrum neque, quis tincidunt arcu pretium ac.",
-    },
-    {
-      img: "../assets/img/doctors/doctors-2.jpg",
-      name: "John White",
-      position: "Anesthesiologist",
-      dec: "Aenean ac turpis ante. Mauris velit sapien.",
-    },
-    {
-      img: "../assets/img/doctors/doctors-4.jpg",
-      name: "Daimy Smith",
-      position: "Chief Medical Officer",
-      dec: "Morbi vulputate, tortor nec pellentesque molestie, eros nisiornare purus.",
-    },
-    {
-      img: "../assets/img/doctors/doctors-3.jpg",
-      name: "Umika Loha",
-      position: "Cardiology",
-      dec: "Curabitur luctus eleifend odio. Phasellus placerat mi.",
-    },
-  ];
+
+  const [doctors, setdoctors] = React.useState([])
+
+
+  useEffect(() => {
+    getData()
+  }, [])
+
+  const getData = () => {
+
+
+    const promise = fetch('https://jsonplaceholer.typicode.com/users')
+
+    promise.then(response => response.json())
+    .then(json => {
+      console.info("promise+++ json",json)
+      setdoctors(json)
+      console.info("promise+++ is resolved")
+    }).catch((error) => {
+      console.info("promise+++ error",error)
+    }).finally(() => {
+      console.info("promise+++ ended",)
+    })
+
+  }
+  
 
   return (
     <div>
@@ -49,15 +49,15 @@ const Doctors = () => {
                   <div className="member d-flex align-items-start">
                     <div className="pic">
                       <img
-                        src={i.img}
+                        src={'https://source.unsplash.com/random'}
                         className="img-doctor"
                         alt=""
                       />
                     </div>
                     <div className="member-info">
                       <h4>{i.name}</h4>
-                      <span>{i.position}</span>
-                      <p>{i.dec}</p>
+                      <span>{i.website}</span>
+                      <p>{i.email}</p>
                       {index !== 2 && <div className="social">
                         <a href>
                           <i className="ri-twitter-fill" />
