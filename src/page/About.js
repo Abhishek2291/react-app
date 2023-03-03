@@ -13,8 +13,6 @@ const About = () => {
 
   const navigate = useNavigate()
 
-  console.info("data+ ",data)
-
   const columns = [
     {
       dataField : 'id',
